@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Register from './components/Register';
+import Login from './components/Login';
+import Jokes from './components/Jokes';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
+    // No time for separate pages! But did all register, login, and joke
+    // getting functionality.
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!loggedIn && 
+        <>
+          <Register setLoggedIn={setLoggedIn}/>
+          <Login setLoggedIn={setLoggedIn}/>
+        </>
+      }
+      {loggedIn && 
+        <Jokes />
+      }
     </div>
   );
 }
